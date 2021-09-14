@@ -20,7 +20,7 @@
 </head>
 <body>
   <div class="container mt-4">
-    <h2>Thank you for purchasing <?php echo $product; ?></h2>
+    <h2>Thank you for purchasing <?php echo $product; ?> prodcut</h2>
     <hr>
     <p>Your transaction ID is <?php echo $tid; ?></p>
     <p>Check your email for more info</p>

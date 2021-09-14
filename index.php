@@ -9,7 +9,7 @@
 </head>
     <body>
     <div class="container">
-<h2 class="my 4">HTU digital</h2>
+<h2 class="my-4 text-center">HTU digital[8.89$]</h2>
     <form action="./charge.php" method="post" id="payment-form">
     <label for="card-element">
      pay with Credit or debit card
@@ -28,7 +28,7 @@
   <button>Apply Payment</button>
 </form>
 </div>
-<scrip
+<script
   src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous">

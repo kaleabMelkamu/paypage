@@ -21,7 +21,7 @@ $customer=\Stripe\Customer::create(array(
 $charge=\Stripe\Charge::create(array(
 "amount" => 899,
 "currency" => "USD",
-"description" => "HtU digital",
+"description" => "HTU digital",
 "customer"=> $customer->id
 ));
 //customerData
@@ -29,6 +29,7 @@ $charge=\Stripe\Charge::create(array(
 $customerData=[
     'id'=>$charge->customer,
     'first_name'=>$first_name,
+
     'last_name'=>$last_name,
     'email'=>$email
 ];
@@ -36,6 +37,8 @@ $customerData=[
 
 //instantiate customer
 $customer= new Customer();
+
+//add customer to db
 $customer->addCustomer($customerData);
 
 //transaction Data
@@ -51,4 +54,9 @@ $TransactionData=[
 
 //instantiate Transaction
 $transaction= new Transaction();
+
+//add transaction to database
 $transaction->addTransaction($TransactionData);
+
+//redirect to success and send Confirm msg
+header('Location: success.php?tid='.$charge->id.'&product='.$charge->description);
