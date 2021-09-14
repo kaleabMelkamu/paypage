@@ -8,4 +8,5 @@
 ```bash
 composer require stripe/stripe-php
 ```
-
+use card number Number	
+4242424242424242 to Test any cvc
