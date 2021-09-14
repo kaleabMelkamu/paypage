@@ -2,6 +2,8 @@
 require_once('vendor/autoload.php');
 require_once('config/db.php');
 require_once('lib/pdo_db.php');
+require_once('model/Customer.php');
+require_once('model/Transaction.php');
 \Stripe\Stripe::setApiKey("sk_test_51JZTG7JJ8742NYJtt0Gapkts0C7Y6ER3sHkLhw7zvI05GCUgSCAkyROiQZBBmXhhneUJA2bG9EW3jHyz24ebxQLM00sJVb8RuA");
 $_POST=filter_var_array($_POST,FILTER_SANITIZE_STRING);
 $first_name=$_POST['first_name'];
@@ -19,6 +21,19 @@ $customer=\Stripe\Customer::create(array(
 $charge=\Stripe\Charge::create(array(
 "amount" => 899,
 "currency" => "USD",
-"Description" =>"HTU digital",
+//"Description" =>"HTU digital",
 "customer"=> $customer->id
 ));
+//customerData
+
+$customerData=[
+    'id'=>$charge->customer,
+    'first_name'=>$first_name,
+    'last_name'=>$last_name,
+    'email'=>$email
+];
+
+
+//instantiate customer
+$customer= new Customer();
+$customer->addCustomer($customerData);
