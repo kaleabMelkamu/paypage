@@ -21,7 +21,7 @@ $customer=\Stripe\Customer::create(array(
 $charge=\Stripe\Charge::create(array(
 "amount" => 899,
 "currency" => "USD",
-//"Description" =>"HTU digital",
+"description" => "HtU digital",
 "customer"=> $customer->id
 ));
 //customerData
@@ -37,3 +37,18 @@ $customerData=[
 //instantiate customer
 $customer= new Customer();
 $customer->addCustomer($customerData);
+
+//transaction Data
+$TransactionData=[
+    'id'=>$charge->id,
+    'customer_id'=>$charge->customer,
+    'product'=>$charge->description,
+    'amount'=>$charge->amount,
+    'currency'=>$charge->currency,
+    'status'=>$charge->status
+];
+
+
+//instantiate Transaction
+$transaction= new Transaction();
+$transaction->addTransaction($TransactionData);
