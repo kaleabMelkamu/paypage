@@ -1,3 +1,13 @@
+<?php
+require_once('config/db.php');
+require_once('model/Customer.php');
+require_once('model/Transaction.php');
+require_once('lib/pdo_db.php');
+$customer= new  Customer();
+
+$customers=$customer->getCustomers();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,17 +19,35 @@
 </head>
 <body>
   <div class="container mt-4">
+      <div class="btn-group" role="group">
+      <a href="customers.php" class="btn btn-primary">Customers</a>
+      <a href="transaction.php" class="btn btn-secondary">Transactions</a>
+    </div>
    <h2>Customers</h2>
    <table class="tabel tabel-striped">
        <thead>
        <tr>
            <th>Customer Id</th>
-           <th>Name</th>
+           <th> First Name</th>
+           <th >Last Name</th>
+
            <th>Email</th>
            <th>Date</th>
-           <th></th>
+           
        </tr>
        </thead>
+       <tbody>
+           <?php foreach($customers as $c):
+           ?>
+<tr>
+    <td><?php  echo $c->id?></td>
+    <td><?php  echo $c->first_name?></td>
+    <td><?php  echo $c->last_name?></td>
+    <td><?php  echo $c->email?></td>
+    <td><?php  echo $c->created_at?></td>
+</tr>
+<?php endforeach; ?>
+</tbody>
    </table>
   </div>
 </body>
