@@ -1,6 +1,8 @@
 <?php
 require_once('vendor/autoload.php');
-$stripe = new \Stripe\StripeClient('sk_test_51JZTG7JJ8742NYJtt0Gapkts0C7Y6ER3sHkLhw7zvI05GCUgSCAkyROiQZBBmXhhneUJA2bG9EW3jHyz24ebxQLM00sJVb8RuA');
+require_once('config/db.php');
+require_once('lib/pdo_db.php');
+\Stripe\Stripe::setApiKey("sk_test_51JZTG7JJ8742NYJtt0Gapkts0C7Y6ER3sHkLhw7zvI05GCUgSCAkyROiQZBBmXhhneUJA2bG9EW3jHyz24ebxQLM00sJVb8RuA");
 $_POST=filter_var_array($_POST,FILTER_SANITIZE_STRING);
 $first_name=$_POST['first_name'];
 $last_name=$_POST['last_name'];
@@ -14,3 +16,9 @@ $customer=\Stripe\Customer::create(array(
 ));
 
 //charge customer
+$charge=\Stripe\Charge::create(array(
+"amount" => 899,
+"currency" => "USD",
+"Description" =>"HTU digital",
+"customer"=> $customer->id
+));
